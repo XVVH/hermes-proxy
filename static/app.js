@@ -1,4 +1,22 @@
 (() => {
+  // ── Theme init (runs before first render to avoid flash) ──────────────────
+  const _mq = window.matchMedia('(prefers-color-scheme: dark)');
+  function _applyTheme(name) {
+    if (name === 'light') {
+      document.documentElement.setAttribute('data-theme', 'light');
+    } else {
+      document.documentElement.removeAttribute('data-theme');
+    }
+  }
+  const _storedTheme = localStorage.getItem('hermes-theme');
+  _applyTheme(_storedTheme || (_mq.matches ? 'dark' : 'light'));
+  // Follow OS changes only when user hasn't made a manual choice
+  _mq.addEventListener('change', e => {
+    if (!localStorage.getItem('hermes-theme')) {
+      _applyTheme(e.matches ? 'dark' : 'light');
+    }
+  });
+
   // ── State ──
   let currentSessionId = localStorage.getItem('hermes-session-id') || null;
   let streaming = false;
@@ -21,6 +39,7 @@
   const sessionLostDismiss = document.getElementById('session-lost-dismiss');
   const logoutBtn = document.getElementById('logout-btn');
   const searchInput = document.getElementById('search-input');
+  const themeToggleBtn = document.getElementById('theme-toggle-btn');
 
   // ── Utilities ──
   function closeSidebar() {
@@ -140,6 +159,13 @@
     await fetch('/auth/logout', { method: 'POST' });
     localStorage.removeItem('hermes-session-id');
     location.reload();
+  });
+
+  themeToggleBtn.addEventListener('click', () => {
+    const current = document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
+    const next = current === 'dark' ? 'light' : 'dark';
+    _applyTheme(next);
+    localStorage.setItem('hermes-theme', next);
   });
 
   // ── Sessions ──
