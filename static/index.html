@@ -24,6 +24,7 @@
       --surface: #1a1a1a;
       --surface2: #222;
       --accent: #00ff88;
+      --on-accent: #000000;
       --text: #e0e0e0;
       --muted: #666;
       --border: #2a2a2a;
@@ -38,12 +39,13 @@
       --bg: #f4f7fa;
       --surface: #ffffff;
       --surface2: #eef2f7;
-      --accent: #00ff88;
+      --accent: #007a45;
+      --on-accent: #ffffff;
       --text: #1a2a3a;
       --muted: #6b7b8a;
       --border: #d0dbe5;
-      --user-bubble: #d2f8ea;
-      --user-bubble-border: #abf9d8;
+      --user-bubble: #d2e6e1;
+      --user-bubble-border: #abd2c4;
       --code-bg: #eef2f7;
     }
     [data-theme="light"] .bubble code,
@@ -75,7 +77,7 @@
     }
     .login-box input[type=password]:focus { border-color: var(--accent); }
     .login-box button {
-      background: var(--accent); color: #000; border: none; border-radius: 4px;
+      background: var(--accent); color: var(--on-accent); border: none; border-radius: 4px;
       padding: 10px; font-family: inherit; font-size: 14px; font-weight: bold;
       cursor: pointer; transition: opacity .15s;
     }
@@ -106,7 +108,7 @@
       padding: 7px 12px; border-radius: 4px; font-family: inherit; font-size: 13px;
       cursor: pointer; transition: background .15s, color .15s;
     }
-    #new-session-btn:hover { background: var(--accent); color: #000; }
+    #new-session-btn:hover { background: var(--accent); color: var(--on-accent); }
     #logout-btn {
       background: none; border: 1px solid var(--border); color: var(--muted);
       border-radius: 4px; padding: 7px 10px; cursor: pointer; font-size: 14px; line-height: 1;
@@ -328,7 +330,7 @@
     }
     #msg-input:focus { border-color: var(--accent); }
     #send-btn {
-      background: var(--accent); color: #000; border: none; border-radius: 6px;
+      background: var(--accent); color: var(--on-accent); border: none; border-radius: 6px;
       padding: 10px 18px; font-family: inherit; font-size: 14px; font-weight: bold;
       cursor: pointer; transition: opacity .15s; white-space: nowrap; flex-shrink: 0;
       height: 42px;
