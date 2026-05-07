@@ -6,3 +6,5 @@ __pycache__/
 .DS_Store
 *.log
 *.err
+DESIGN.md
+static/density-lab.*
